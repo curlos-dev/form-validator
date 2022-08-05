@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Address, AddressValidator } from "../address.model"
+import { Address, AddressValidator } from "../utils/address.model"
 import { InputField } from "./InputField"
 
 const BASE_FIELD_STATE = {
