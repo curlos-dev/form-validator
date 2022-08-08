@@ -144,8 +144,9 @@ const AddressForm = () => {
         })
     }
 
-    console.log(addressTwoFields)
-    console.log([addressTwoFields.Address2.value.value])
+    // console.log(addressTwoFields)
+    // console.log([addressTwoFields.Address2.value.value])
+    // console.log([addressTwoFields.Address2.value.message])
 
     // const customerAddress = new Address({
     //     FirstName: firstName.value,

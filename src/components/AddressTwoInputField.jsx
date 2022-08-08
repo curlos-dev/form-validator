@@ -54,8 +54,6 @@ export const AddressTwoInputField = ({ type, title, addressTwoFields, addressFie
             ...validatedField,
             value: addressTwoValue
         })
-
-        console.log(event.target.value)
     }
     
     const valid = (addressTwoField.message.length === 0 || addressTwoField.valid)

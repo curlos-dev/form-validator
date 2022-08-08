@@ -220,13 +220,15 @@ class AddressValidator {
     const regex = /^[a-zA-Z0-9_]*/
     const valid = regex.test(address2)
 
-
     if (!valid) {
       return {
         valid: false,
         message: "Address2 must only be alphanumeric characters!"
       }
     } else {
+      const { unitType, unitValue } = getUnitTypeAndValue(address2)
+
+
       return {
         valid: true
       }
@@ -390,6 +392,8 @@ class AddressValidator {
       valid: true
     }
   }
+  
+  
 }
 
 const addressObject = {
@@ -402,6 +406,37 @@ const addressObject = {
   PostalCode: "70117",
   Email: "marc+080422.03@qlink.com",
   Phone: "5616269531",
+}
+
+function getUnitTypeAndValue(address2) {
+  let unitType = '';
+  let unitValue = '';
+  const splitAddressArr = address2.trim().split(' ')
+
+  const regex = /[0-9]/
+  console.log(splitAddressArr)
+
+  if (splitAddressArr.length === 2) {
+    unitType = splitAddressArr[0]
+    unitValue = splitAddressArr[1]
+  } else {
+    for (let i = 0; i < address2.length; i++) {
+      const char = address2[i]
+      const isNum = regex.test(char)
+
+      if (isNum) {
+        unitType = address2.slice(0, i).trim()
+        unitValue = address2.slice(i, address2.length).trim()
+        break
+      }
+
+      if (i === address2.length - 1) {
+        unitType = address2
+      }
+    }
+  }
+
+  return { unitType, unitValue }
 }
 
 
