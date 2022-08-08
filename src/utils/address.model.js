@@ -49,17 +49,17 @@ staticValues.unitTypes = unitTypes
 class Address {
   constructor(AddressObject) {
     const {
-      FirstName,
-      LastName,
-      UnitType,
-      UnitValue,
-      Address1,
-      Address2,
-      Address3,
-      City,
-      Region,
-      PostalCode,
-      Email,
+      FirstName, 
+      LastName, 
+      UnitType, 
+      UnitValue, 
+      Address1, 
+      Address2, 
+      Address3, 
+      City, 
+      Region, 
+      PostalCode, 
+      Email, 
       Phone
     } = AddressObject
 
@@ -83,6 +83,7 @@ class Address {
       UnitType,
       UnitValue
     };
+
     this._unit = Address2;
     this.AddressValidator = new AddressValidator()
     this.validatedFields = this.AddressValidator.validateAllFields(AddressObject)
@@ -167,7 +168,7 @@ class AddressValidator {
       }
     }
 
-    const regex = /[a-zA-Z]+/
+    const regex = /[a-zA-Z]+$/
     const valid = regex.test(name)
 
     if (!valid) {
@@ -191,14 +192,14 @@ class AddressValidator {
       }
     }
 
-    const regex = /[a-zA-Z0-9]+/
+    const regex = /^\d+\s[A-z]+\s.*$/
     const valid = regex.test(address1)
 
 
     if (!valid) {
       return {
         valid: false,
-        message: "Address1 must only be alphanumeric characters!"
+        message: "Address1 must only be alphanumeric characters and have at least two spaces!"
       }
     } else {
       return {
@@ -216,7 +217,7 @@ class AddressValidator {
       }
     }
 
-    const regex = /[a-zA-Z0-9]+/
+    const regex = /^[a-zA-Z0-9_]*/
     const valid = regex.test(address2)
 
 
@@ -241,7 +242,7 @@ class AddressValidator {
       }
     }
 
-    const regex = /[a-zA-Z0-9]+/
+    const regex = /^[a-zA-Z0-9_]*$/
     const valid = regex.test(address3)
 
 
@@ -266,7 +267,7 @@ class AddressValidator {
       }
     }
 
-    const regex = /[a-zA-Z]+/
+    const regex = /^\D*$/
     const valid = regex.test(city)
 
 
@@ -291,7 +292,7 @@ class AddressValidator {
       }
     }
 
-    const regex = /[a-zA-Z]+/
+    const regex = /[a-zA-Z]+$/
     const valid = regex.test(region)
 
 
@@ -310,6 +311,13 @@ class AddressValidator {
   validatePostalCode(postalCode) {
     // postalCode.length === 5, [0-9]
 
+    if (!(/[0-9]+$/.test(postalCode))) {
+      return {
+        valid: false,
+        message: "Postal Code must only contain numbers!"
+      }
+    }
+
     if (postalCode.length !== 5) {
       return {
         valid: false,
@@ -317,7 +325,7 @@ class AddressValidator {
       }
     }
 
-    const regex = /[0-9]+/
+    const regex = /^\s*?\d{5}(?:[-\s]\d{4})?\s*?$/
     const valid = regex.test(postalCode)
 
 
@@ -367,7 +375,7 @@ class AddressValidator {
       }
     }
 
-    const regex = /[0-9]+/
+    const regex = /[0-9]+$/
     const valid = regex.test(phone)
 
 

@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 export const InputField = ({ type, title, name, value, handleFieldChange, field }) => {
     
     const handleChangeValue = (event) => {
@@ -9,11 +7,11 @@ export const InputField = ({ type, title, name, value, handleFieldChange, field 
     const valid = (field.message.length === 0 || field.valid)
 
     return (
-        <div className="text-sky-500">
+        <div className="">
             <div className="text-sky-700 font-bold text-base">{title}:</div>
             
             <div className={`flex justify-between rounded-lg p-3 bg-white border ${valid ? 'border-sky-500' : 'border-rose-600 border-b-0 rounded-b-none'}`}>
-                <input type={type} className="w-full bg-transparent focus-visible:outline-none placeholder-gray-400" placeholder={title} value={value} onChange={handleChangeValue} />
+                <input type={type} className="w-full bg-white focus-visible:outline-none placeholder-gray-400" placeholder={title} value={value} onChange={handleChangeValue} />
 
                 {field.message.length > 0 && (
                     field.valid ? (

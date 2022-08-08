@@ -5,7 +5,7 @@ import AddressForm from './components/AddressForm';
 const App = () => {
 
   return (
-    <div className="p-5">
+    <div className="2xl:px-12 py-10 p-5">
       <AddressForm />
     </div>
   );
